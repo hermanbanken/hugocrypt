@@ -1,26 +1,29 @@
 backend:
-  name: git-gateway
-  branch: master # Branch to update (optional; defaults to master)
-media_folder: static/img
-public_folder: /img
+  name: test-repo
+  login: false
+media_folder: assets
 collections:
   - name: 'posts'
     label: 'Posts'
     folder: 'content/posts'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    view_groups:
+      - label: Year
+        field: date
+        pattern: \d{4}
     fields:
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Draft', name: 'draft', widget: 'boolean' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Users', name: 'users', widget: 'hugocryptUsers' }
+      # - { label: 'Users', name: 'users', widget: 'hugocryptUsers' }
   - name: 'hugocrypt'
     label: 'Secured Content Settings'
     files:
       - label: Users
         name: 'users'
-        file: 'site/users.yml'
+        file: 'users.yml'
         fields:
         - { label: 'Username', name: 'name', widget: 'string' }
-        - { label: 'Public Key', name: 'publickey', widget: 'hugocryptPublicKey' }
+        # - { label: 'Public Key', name: 'publickey', widget: 'hugocryptPublicKey' }
